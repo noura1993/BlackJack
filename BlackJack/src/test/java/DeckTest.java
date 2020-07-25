@@ -16,4 +16,10 @@ public class DeckTest {
     public void deckShouldStartEmpty() {
         assertEquals(0, deck.getDeckSize());
     }
+
+    @Test
+    public void canPopulateTheDeckOfCards() {
+        deck.populateTheDeck();
+        assertEquals(52, deck.getDeckSize());
+    }
 }

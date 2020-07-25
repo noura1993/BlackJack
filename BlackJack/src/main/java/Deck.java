@@ -12,5 +12,13 @@ public class Deck {
         return this.deck.size();
     }
 
+    public void populateTheDeck() {
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                this.deck.add(new Card(suit, rank));
+            }
+        }
+    }
+
 
 }
