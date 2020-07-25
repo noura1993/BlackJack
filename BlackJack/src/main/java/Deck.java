@@ -13,6 +13,8 @@ public class Deck {
     }
 
     public void populateTheDeck() {
+        this.deck.clear();
+
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 this.deck.add(new Card(suit, rank));

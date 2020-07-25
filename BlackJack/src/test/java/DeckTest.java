@@ -22,4 +22,11 @@ public class DeckTest {
         deck.populateTheDeck();
         assertEquals(52, deck.getDeckSize());
     }
+
+    @Test
+    public void clearsBeforePopulateTheDeckOfCards() {
+        deck.populateTheDeck();
+        deck.populateTheDeck();
+        assertEquals(52, deck.getDeckSize());
+    }
 }
