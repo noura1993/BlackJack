@@ -37,10 +37,12 @@ public class Dealer {
         this.deck.populateTheDeck();
         this.dealerCards.add(this.deck.dealCard());
         for (Player player : this.players) {
-            player.twistCard(this.deck.dealCard());
-            player.twistCard(this.deck.dealCard());
+            Card card1 = this.deck.dealCard();
+            Card card2 = this.deck.dealCard();
+            player.twistCard(card1);
+            player.twistCard(card2);
 
-            if (player.totalCardsValue() == 21) {
+            if((card1.getRankValue() == 1 && card2.getRankValue() == 10) || (card1.getRankValue() == 10 && card2.getRankValue() == 1)) {
                 player.setPlayerState(PlayerState.WINNER);
             }
         }

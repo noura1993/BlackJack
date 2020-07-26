@@ -22,14 +22,14 @@ public class Runner {
 
        int currentPlayerIndex = dealer.getCurrentPlayerIndex();
        while(currentPlayerIndex != -1) {
-           System.out.println("Choose an action: type s for stick or t for twist");
+           System.out.println("Choose an action: type s for stand or t for twist");
            String action = reader.readLine().toLowerCase();
            if(action.equals("s")) {
                dealer.goToNextPlayer();
            } else if(action.equals("t")) {
                dealer.twistCardToPlayer();
            } else {
-               System.out.println("Choose an action: type s for stick or t for twist");
+               System.out.println("Choose an action: type s for stand or t for twist");
            }
            currentPlayerIndex = dealer.getCurrentPlayerIndex();
            dealer.printBoard();
