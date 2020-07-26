@@ -20,4 +20,10 @@ public class Dealer {
     public int countPlayers() {
         return this.players.size();
     }
+
+    public void addCardToDealerCards(Card card) {
+        this.dealerCards.add(card);
+    }
+
+
 }

@@ -39,4 +39,11 @@ public class DeckTest {
         Card card2 = deck.getFirstCard();
         assertNotEquals(card2, card1);
     }
+
+    @Test
+    public void dealCard() {
+        deck.populateTheDeck();
+        deck.dealCard();
+        assertEquals(51, deck.getDeckSize());
+    }
 }
