@@ -68,4 +68,18 @@ public class Dealer {
     public int getCurrentPlayerIndex() {
         return this.currentPlayerIndex;
     }
+
+    public void twistCardToPlayer() {
+        Player currentPlayer = this.players.get(this.currentPlayerIndex);
+        if(this.currentPlayerIndex != -1 && currentPlayer.getPlayerState() == PlayerState.PLAYING) {
+            currentPlayer.twistCard(this.deck.dealCard());
+            if(currentPlayer.totalCardsValue() == 21) {
+                currentPlayer.setPlayerState(PlayerState.WINNER);
+                this.goToNextPlayer();
+            } else if(currentPlayer.totalCardsValue() > 21) {
+                currentPlayer.setPlayerState(PlayerState.LOSER);
+                this.goToNextPlayer();
+            }
+        }
+    }
 }
