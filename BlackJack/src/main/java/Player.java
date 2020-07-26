@@ -16,6 +16,10 @@ public class Player {
         return this.name;
     }
 
+    public ArrayList<Card> getCards() {
+        return this.playerCards;
+    }
+
     public int countCards() {
         return this.playerCards.size();
     }

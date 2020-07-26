@@ -121,4 +121,32 @@ public class Dealer {
             }
         }
     }
+
+    public void printBoard() {
+        System.out.println("=============================================");
+        System.out.println("=============================================");
+        System.out.println("=============================================");
+        System.out.println("Current status:");
+        System.out.println("===============");
+        System.out.println("Dealer:");
+        for (Card dealerCard : this.dealerCards) {
+            System.out.println(dealerCard.getRank() + "-" + dealerCard.getSuit());
+        }
+        System.out.println();
+        System.out.println();
+        for (Player player : this.players) {
+            System.out.println("Player: " + player.getPlayerName() + " (" + player.getPlayerState() + ")");
+            for (Card card : player.getCards()) {
+                System.out.println(card.getRank() + "-" + card.getSuit());
+            }
+            System.out.println();
+            System.out.println();
+        }
+
+        if (this.currentPlayerIndex == -1) {
+            System.out.println("Current player: Dealer");
+        } else {
+            System.out.println("Current player: " + this.players.get(this.currentPlayerIndex).getPlayerName());
+        }
+    }
 }
