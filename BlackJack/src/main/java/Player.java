@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-    private ArrayList<Card> playerCards;
+    private final ArrayList<Card> playerCards;
     private PlayerState playerState;
 
     public Player() {
@@ -24,6 +24,14 @@ public class Player {
             totalValue += playerCard.getRankValue();
         }
         return totalValue;
+    }
+
+    public PlayerState getPlayerState() {
+        return this.playerState;
+    }
+
+    public void setPlayerState(PlayerState state) {
+        this.playerState = state;
     }
 
 }

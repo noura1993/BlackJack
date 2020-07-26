@@ -29,4 +29,11 @@ public class PlayerTest {
         assertEquals(12, player.totalCardsValue());
     }
 
+    @Test
+    public void changePlayerState() {
+        PlayerState state = PlayerState.WINNER;
+        player.setPlayerState(state);
+        assertEquals(state, player.getPlayerState());
+    }
+
 }
