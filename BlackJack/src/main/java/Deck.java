@@ -22,6 +22,8 @@ public class Deck {
                 this.deck.add(new Card(suit, rank));
             }
         }
+        this.shuffleCards();
+
     }
 
     public Card getFirstCard() {
@@ -29,7 +31,6 @@ public class Deck {
     }
 
     public void shuffleCards() {
-        this.populateTheDeck();
         Collections.shuffle(this.deck);
     }
 }
