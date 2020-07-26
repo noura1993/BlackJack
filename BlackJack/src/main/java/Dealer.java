@@ -25,6 +25,10 @@ public class Dealer {
         this.dealerCards.add(card);
     }
 
+    public int countDeckSize() {
+        return this.deck.getDeckSize();
+    }
+
     public int countDealerCards() {
         return this.dealerCards.size();
     }
@@ -39,6 +43,12 @@ public class Dealer {
             if(player.totalCardsValue() == 21) {
                 player.setPlayerState(PlayerState.WINNER);
             }
+        }
+        for (int i = 0; i < this.players.size(); i++) {
+            if(this.players.get(i).getPlayerState() == PlayerState.PLAYING) {
+                this.currentPlayerIndex = i;
+            }
+            break;
         }
     }
 }

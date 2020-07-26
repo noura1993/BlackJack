@@ -6,7 +6,6 @@ import static org.junit.Assert.assertEquals;
 public class DealerTest {
 
     private Dealer dealer;
-    private Deck deck;
     private Player player1;
     private Player player2;
     private Card card1;
@@ -15,7 +14,6 @@ public class DealerTest {
     @Before
     public void before() {
         dealer = new Dealer();
-        deck = new Deck();
         player1 = new Player();
         player2 = new Player();
         card1 = new Card(Suit.HEART, Rank.QUEEN);
@@ -34,5 +32,16 @@ public class DealerTest {
         dealer.addCardToDealerCards(card1);
         dealer.addCardToDealerCards(card2);
         assertEquals(2, dealer.countDealerCards());
+    }
+
+    @Test
+    public void startGame() {
+        dealer.addPlayer(player1);
+        dealer.addPlayer(player2);
+        dealer.startGame();
+        assertEquals(1, dealer.countDealerCards());
+        assertEquals(2, player1.countCards());
+        assertEquals(2, player2.countCards());
+        assertEquals(47, dealer.countDeckSize());
     }
 }
