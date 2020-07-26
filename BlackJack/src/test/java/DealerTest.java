@@ -53,4 +53,13 @@ public class DealerTest {
         dealer.goToNextPlayer();
         assertEquals(1, dealer.getCurrentPlayerIndex());
     }
+
+    @Test
+    public void twistCardToPlayer() {
+        dealer.addPlayer(player1);
+        dealer.addPlayer(player2);
+        dealer.startGame();
+        dealer.twistCardToPlayer();
+        assertEquals(3, player1.countCards());
+    }
 }
