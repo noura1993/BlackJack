@@ -44,4 +44,13 @@ public class DealerTest {
         assertEquals(2, player2.countCards());
         assertEquals(47, dealer.countDeckSize());
     }
+
+    @Test
+    public void goToNextPlayer() {
+        dealer.addPlayer(player1);
+        dealer.addPlayer(player2);
+        dealer.startGame();
+        dealer.goToNextPlayer();
+        assertEquals(1, dealer.getCurrentPlayerIndex());
+    }
 }

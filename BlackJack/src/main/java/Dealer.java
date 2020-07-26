@@ -47,8 +47,25 @@ public class Dealer {
         for (int i = 0; i < this.players.size(); i++) {
             if(this.players.get(i).getPlayerState() == PlayerState.PLAYING) {
                 this.currentPlayerIndex = i;
+                break;
             }
-            break;
         }
+    }
+
+    public void goToNextPlayer() {
+        if(this.currentPlayerIndex == this.players.size()-1) {
+            this.currentPlayerIndex = -1;
+        } else {
+            for (int i = this.currentPlayerIndex+1; i < this.players.size(); i++) {
+                if(this.players.get(i).getPlayerState() == PlayerState.PLAYING) {
+                    this.currentPlayerIndex = i;
+                    break;
+                }
+            }
+        }
+    }
+
+    public int getCurrentPlayerIndex() {
+        return this.currentPlayerIndex;
     }
 }
