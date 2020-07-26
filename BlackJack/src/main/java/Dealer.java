@@ -149,4 +149,14 @@ public class Dealer {
             System.out.println("Current player: " + this.players.get(this.currentPlayerIndex).getPlayerName());
         }
     }
+
+    public void printFinalStats() {
+        System.out.println("=============================================");
+        System.out.println("=============================================");
+        System.out.println("=============================================");
+        System.out.println("Dealer cards value: (" + this.countDealerCardsValue() + ")");
+        for (Player player : this.players) {
+            System.out.println("Player: " + player.getPlayerName() + " (" + player.getPlayerState() + ")");
+        }
+    }
 }
