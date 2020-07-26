@@ -5,7 +5,7 @@ public class Dealer {
     private Deck deck;
     private ArrayList<Player> players;
     private ArrayList<Card> dealerCards;
-    private Player currentPlayer;
+    private int currentPlayerIndex = -1;
 
     public Dealer() {
         this.deck = new Deck();
@@ -25,5 +25,20 @@ public class Dealer {
         this.dealerCards.add(card);
     }
 
+    public int countDealerCards() {
+        return this.dealerCards.size();
+    }
 
+    public void startGame() {
+        this.deck.populateTheDeck();
+        this.dealerCards.add(this.deck.dealCard());
+        for (Player player : this.players) {
+            player.twistCard(this.deck.dealCard());
+            player.twistCard(this.deck.dealCard());
+
+            if(player.totalCardsValue() == 21) {
+                player.setPlayerState(PlayerState.WINNER);
+            }
+        }
+    }
 }
