@@ -4,10 +4,16 @@ public class Player {
 
     private final ArrayList<Card> playerCards;
     private PlayerState playerState;
+    private String name;
 
-    public Player() {
+    public Player(String name) {
+        this.name = name;
         this.playerCards = new ArrayList<Card>();
         this.playerState = PlayerState.PLAYING;
+    }
+
+    public String getPlayerName() {
+        return this.name;
     }
 
     public int countCards() {

@@ -11,9 +11,14 @@ public class PlayerTest {
 
     @Before
     public void before() {
-        player = new Player();
+        player = new Player("Rose");
         card1 = new Card(Suit.HEART, Rank.QUEEN);
         card2 = new Card(Suit.SPADE, Rank.TWO);
+    }
+
+    @Test
+    public void getPlayerName() {
+        assertEquals("Rose", player.getPlayerName());
     }
 
     @Test
