@@ -40,12 +40,12 @@ public class Dealer {
             player.twistCard(this.deck.dealCard());
             player.twistCard(this.deck.dealCard());
 
-            if(player.totalCardsValue() == 21) {
+            if (player.totalCardsValue() == 21) {
                 player.setPlayerState(PlayerState.WINNER);
             }
         }
         for (int i = 0; i < this.players.size(); i++) {
-            if(this.players.get(i).getPlayerState() == PlayerState.PLAYING) {
+            if (this.players.get(i).getPlayerState() == PlayerState.PLAYING) {
                 this.currentPlayerIndex = i;
                 break;
             }
@@ -53,11 +53,11 @@ public class Dealer {
     }
 
     public void goToNextPlayer() {
-        if(this.currentPlayerIndex == this.players.size()-1) {
+        if (this.currentPlayerIndex == this.players.size() - 1) {
             this.currentPlayerIndex = -1;
         } else {
-            for (int i = this.currentPlayerIndex+1; i < this.players.size(); i++) {
-                if(this.players.get(i).getPlayerState() == PlayerState.PLAYING) {
+            for (int i = this.currentPlayerIndex + 1; i < this.players.size(); i++) {
+                if (this.players.get(i).getPlayerState() == PlayerState.PLAYING) {
                     this.currentPlayerIndex = i;
                     break;
                 }
@@ -71,14 +71,53 @@ public class Dealer {
 
     public void twistCardToPlayer() {
         Player currentPlayer = this.players.get(this.currentPlayerIndex);
-        if(this.currentPlayerIndex != -1 && currentPlayer.getPlayerState() == PlayerState.PLAYING) {
+        if (this.currentPlayerIndex != -1 && currentPlayer.getPlayerState() == PlayerState.PLAYING) {
             currentPlayer.twistCard(this.deck.dealCard());
-            if(currentPlayer.totalCardsValue() == 21) {
+            if (currentPlayer.totalCardsValue() == 21) {
                 currentPlayer.setPlayerState(PlayerState.WINNER);
                 this.goToNextPlayer();
-            } else if(currentPlayer.totalCardsValue() > 21) {
+            } else if (currentPlayer.totalCardsValue() > 21) {
                 currentPlayer.setPlayerState(PlayerState.LOSER);
                 this.goToNextPlayer();
+            }
+        }
+    }
+
+    public int countDealerCardsValue() {
+        int totalValue = 0;
+        for (Card dealerCard : this.dealerCards) {
+            totalValue += dealerCard.getRankValue();
+        }
+        return totalValue;
+    }
+
+    public void wrapUpGame() {
+        if (this.currentPlayerIndex == -1) {
+            this.addCardToDealerCards(this.deck.dealCard());
+            if (this.countDealerCardsValue() > 21) {
+                for (Player player : this.players) {
+                    if (player.getPlayerState() == PlayerState.PLAYING) {
+                        player.setPlayerState(PlayerState.WINNER);
+                    }
+                }
+            } else if (this.countDealerCardsValue() == 21) {
+                for (Player player : this.players) {
+                    if (player.getPlayerState() == PlayerState.PLAYING) {
+                        player.setPlayerState(PlayerState.LOSER);
+                    }
+                }
+            } else if (this.countDealerCardsValue() >= 17) {
+                int dealerScore = this.countDealerCardsValue();
+                for (Player player : this.players) {
+                    if (player.totalCardsValue() > dealerScore) {
+                        player.setPlayerState(PlayerState.WINNER);
+                    } else if (player.totalCardsValue() < dealerScore) {
+                        player.setPlayerState(PlayerState.LOSER);
+                    }
+                }
+            } else {
+                this.addCardToDealerCards(this.deck.dealCard());
+                this.wrapUpGame();
             }
         }
     }

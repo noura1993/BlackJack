@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class DealerTest {
 
@@ -61,5 +62,18 @@ public class DealerTest {
         dealer.startGame();
         dealer.twistCardToPlayer();
         assertEquals(3, player1.countCards());
+    }
+
+    @Test
+    public void wrapUpGame() {
+        dealer.addPlayer(player1);
+        dealer.addPlayer(player2);
+        dealer.startGame();
+        dealer.goToNextPlayer();
+        dealer.goToNextPlayer();
+        dealer.wrapUpGame();
+        assertNotEquals(1, dealer.countDealerCards());
+        assertNotEquals(PlayerState.PLAYING, player1.getPlayerState());
+        assertNotEquals(PlayerState.PLAYING, player2.getPlayerState());
     }
 }
