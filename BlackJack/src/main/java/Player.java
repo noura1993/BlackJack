@@ -18,5 +18,12 @@ public class Player {
         this.playerCards.add(card);
     }
 
+    public int totalCardsValue() {
+        int totalValue = 0;
+        for (Card playerCard : this.playerCards) {
+            totalValue += playerCard.getRankValue();
+        }
+        return totalValue;
+    }
 
 }
